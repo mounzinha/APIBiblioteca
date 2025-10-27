@@ -5,11 +5,10 @@ const app = express();
 
 app.use(express.json());
 
-// Rotas
-app.use("/authors", require("./routes/authors"));
-app.use("/users", require("./routes/users"));
-app.use("/books", require("./routes/books"));
-app.use("/loans", require("./routes/loans"));
+app.use("/authors", require("./routers/authors"));
+app.use("/users", require("./routers/users"));
+app.use("/books", require("./routers/books"));
+app.use("/loans", require("./routers/loans"));
 
 mongoose
   .connect(process.env.MONGO_URI)

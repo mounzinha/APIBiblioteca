@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cadastro de Usuário</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        padding: 40px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      form {
+        max-width: 400px;
+        margin: auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .success {
+        color: green;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .error {
+        color: red;
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cadastro de Usuário</h1>
+    <form id="userForm">
+      <input type="text" name="name" placeholder="Nome completo" required />
+      <input type="date" name="birthDate" required />
+      <select name="sex" required>
+        <option value="">Sexo</option>
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>
+      </select>
+      <input type="text" name="address" placeholder="Endereço" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <div id="feedback"></div>
+
+    <script>
+      const form = document.getElementById("userForm");
+      const feedback = document.getElementById("feedback");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const res = await fetch("http://localhost:3000/users", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          const result = await res.text();
+          feedback.textContent = res.ok
+            ? "✅ Usuário cadastrado com sucesso!"
+            : `❌ Erro: ${result}`;
+          feedback.className = res.ok ? "success" : "error";
+          if (res.ok) form.reset();
+        } catch (err) {
+          feedback.textContent = "❌ Erro de conexão com o servidor.";
+          feedback.className = "error";
+        }
+      });
+    </script>
+  </body>
+</html>

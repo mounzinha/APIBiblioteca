@@ -1,0 +1,30 @@
+### Criar usuário
+POST http://localhost:3000/authors
+Content-Type: application/json
+
+{
+  "name": "Clarice Lispector",
+  "birthDate": "1920-12-10",
+  "sex": "F",
+  "writingGenre": "Fiction"
+}
+
+### Criar usuário
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Maria Oliveira",
+  "birthDate": "1985-05-20",
+  "sex": "F",
+  "address": "Rua das Acácias, 456"
+}
+
+### Criar empréstimo
+{
+  "title": "A Hora da Estrela",
+  "synopsis": "A história de Macabéa, uma nordestina que vive no Rio de Janeiro.",
+  "year": 1977,
+  "author": "68ffd5c406451dedf44250a8"
+}
