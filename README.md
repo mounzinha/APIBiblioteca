@@ -82,7 +82,7 @@ BibliotecaDB/
 
 💌 Créditos
 
-Projeto desenvolvido com carinho por moon em Cataguases, MG.  
+Projeto desenvolvido com carinho por Ana Julia em Cataguases, MG.  
 Feito para quem ama livros, organização e interfaces fofinhas 🌈📖
 
 ---
